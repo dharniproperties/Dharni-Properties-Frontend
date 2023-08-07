@@ -1,0 +1,46 @@
+.img-size{
+    height: 500px;
+    
+}
+
+.text-color{
+    color:#052e66;
+}
+
+.layout-img{
+    height: 70px;
+    width: 70px;
+}
+.btnCol{
+    background-color: #052e66;
+    color: white;
+}
+.mar{
+    margin-right: 40px;
+}
+
+
+@media all and (max-width : 580px) {
+
+    .font-sizes{
+        font-size:1rem;
+    }
+    .dis{
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between;
+    }
+    .textCeter{
+        text-align: center;
+    }
+    .mar{
+        margin-right: 15px;
+    }
+    .wra{
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+
+
