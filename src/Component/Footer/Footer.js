@@ -28,7 +28,7 @@ const Footer = () => {
                         </div>
                         <div className='ms-1'>
                             <div>
-                                <a style={{ textDecoration: 'none' }} href='https://www.facebook.com/dharnigroup' className=''>Dharni Property </a>
+                                <a style={{ textDecoration: 'none' }} href='https://www.facebook.com/dharnigroup' className=''>Dharni Properties </a>
                             </div>
                             <div>
                                 <a style={{ textDecoration: 'none' }} href='https://www.facebook.com/dharnigroup' className='text-muted'> <i className="fa-brands fa-square-facebook"></i> Follow Page </a>
@@ -46,9 +46,9 @@ const Footer = () => {
                     </div>
                     <div className=' mt-4 d-flex align-items-center '>
 
-                        <a className='' target='_blank' href=''><i className=" me-3 fa-brands fa-google"></i></a>
+                        <a className='' target='_blank' href='https://www.google.com/maps/place/DHARNI+Capital/@12.993086,77.702896,21z/data=!4m14!1m7!3m6!1s0x3bae119f0e352d3f:0x86ca1ae2e0e0d66a!2sDHARNI+Capital!8m2!3d12.9930625!4d77.7028941!16s%2Fg%2F11g6vfghmh!3m5!1s0x3bae119f0e352d3f:0x86ca1ae2e0e0d66a!8m2!3d12.9930625!4d77.7028941!16s%2Fg%2F11g6vfghmh?hl=en-US&entry=ttu'><i className=" me-3 fa-brands fa-google"></i></a>
                         <a target='_blank' href='https://www.facebook.com/dharnigroup'><i className="mx-3 fa-brands fa-facebook"></i></a>
-                        <a target='_blank' href=''><i className=" mx-3 fa-brands fa-instagram"></i></a>
+                        {/* <a target='_blank' href=''><i className=" mx-3 fa-brands fa-instagram"></i></a> */}
                         <a target='_blank' href='https://www.linkedin.com/company/dharni-group/about/'><i className="mx-3 fa-brands fa-linkedin"></i></a>
                         <a target='_blank' href='https://twitter.com/DHARNIgroup'><i className="mx-3  fa-brands fa-twitter"></i></a>
                     </div>
@@ -57,7 +57,7 @@ const Footer = () => {
 
             </div>
             <div className=' mt-5' style={{ minHeight: '4rem' }}>
-                <h6 className='text-dark fw-4 text-center fw-bold'>Copyright © 2023 Dharni Capital Services Limited. All rights reserved</h6>
+                <p className='text-dark  text-center fw-bold'>Copyright © 2023 Dharni Capital Services Limited. All rights reserved</p>
 
 
             </div>

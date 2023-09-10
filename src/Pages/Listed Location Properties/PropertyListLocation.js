@@ -12,13 +12,13 @@ const ListedProperties = () => {
   const { locationId } = useParams();
   //console.log(projectId);
   const [properties, setProperties] = useState([]);
-  const [loader, setLoader] = useState(false);
+  //const [loader, setLoader] = useState(false);
 
 
 
 
   useEffect(() => {
-    setLoader(true);
+    //setLoader(true);
     fetchProperty();
     //debugger;
   }, []);
@@ -31,7 +31,7 @@ const ListedProperties = () => {
       //debugger;
       //console.log("Response Data", response.data)
       setProperties(response.data);
-      setLoader(false);
+      //setLoader(false);
 
       //console.log(properties);
     }
@@ -45,13 +45,13 @@ const ListedProperties = () => {
 
   return (
     <div className='  container '>
-      {loader ?
+      {/* {loader ?
         <div className='mb-3 mt-3 col-md-12 text-center'>
           <div className="  spinner-border text-primary" role="status">
             <span className="visually-hidden"></span>
           </div>
         </div>
-        : ""}
+        : ""} */}
 
       <div className='row mb-2'>
         {properties.map(property => (
@@ -72,7 +72,7 @@ const ListedProperties = () => {
                   <h5 className="card-title">₹ {property.expectedSalePrice} </h5>
                   <p className="card-text"> {property.additionalInformation} ...</p>
                   <p><i className="fa-solid fa-bed"></i> {property.bedrooms} &nbsp; &nbsp;<span > <i className="fa-solid fa-droplet "></i> {property.bathrooms} &nbsp; &nbsp;</span> <span className=''><i className="fa-solid fa-map"></i>{property.builtUpArea} ft<sup>2</sup></span> </p>
-                  <p className='text-center'><Link to='/interested' className='text-muted text-decoration-none'><i class="fa-sharp fa-regular fa-face-smile"></i> Interested?</Link></p>
+                  <p className='text-center'><Link to='/interested' className='text-muted text-decoration-none'><i className="fa-sharp fa-regular fa-face-smile"></i> Interested?</Link></p>
                 </div>
               </div>
             </div>

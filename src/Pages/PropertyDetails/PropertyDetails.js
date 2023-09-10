@@ -29,7 +29,7 @@ const PropertyDetails = () => {
     const [emailAddress, setEmailAddress] = useState('');
     const [requirements, setRequirements] = useState('');
     const [propertyDetails, setPropertyDetails] = useState({});
-    const [loader,setLoader] =useState(false);
+    //const [loader,setLoader] =useState(false);
 
     const formSubmit = (e) => {
         e.preventDefault();
@@ -67,11 +67,11 @@ const PropertyDetails = () => {
 
 
     useEffect(() => {
-        setLoader(true);
+       // setLoader(true);
         const fetchProperty = async () => {
             try {
                 const response = await axios.get(`${API_BASE_URL}/propertyDetails/${propertyId}`);
-                setLoader(false);
+                //setLoader(false);
                 //debugger;
                 //console.log("Response Data", response.data);
                 setPropertyDetails(response.data);
@@ -123,13 +123,13 @@ const PropertyDetails = () => {
 
     return (
         <div className='container'>
-            {loader ?
+            {/* {loader ?
                   <div className='mb-3 mt-3 col-md-12 text-center'>
                     <div className="  spinner-border text-primary" role="status">
                       <span className="visually-hidden"></span>
                     </div>
                   </div>
-                  : ""}
+                  : ""} */}
             <div className='row'>
                 <div className='col-lg-8 col-md-8 col-sm-12  '>
                     <h3 className='my-5'>{propertyDetails.bedrooms} BHK {propertyDetails.villaApartmentNumber} {propertyDetails.projectName}, {propertyDetails.location}</h3>
@@ -446,7 +446,7 @@ const PropertyDetails = () => {
                                     <input type="tel" name='user_mobileno' placeholder='Your Number' className=" mt-3 form-control" id="date" aria-describedby="emailHelp" required />
 
                                     <div className=' mt-3 '>
-                                        <button type="submit" value='send' className=" form-control btn btn-primary ">Send Email</button>
+                                        <button type="submit" value='send' className="font-sizes form-control btn btn-primary ">Send Email</button>
                                     </div>
 
                                 </div>
@@ -455,7 +455,7 @@ const PropertyDetails = () => {
                                 <div className='  me-2 col-6'>
                                     <a href="tel:9945608407">
 
-                                        <button type="submit" className=" form-control btn btn-secondary "><i className="fa-solid fa-phone"></i> Call</button></a>
+                                        <button type="submit" className="font-sizes form-control btn btn-secondary "><i className="fa-solid fa-phone"></i> Call</button></a>
                                 </div>
                                 <div className='font-sizes  col-6'>
                                     <a href="https://wa.me/9945608407?text=Hello!">

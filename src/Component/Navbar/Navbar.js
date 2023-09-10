@@ -19,15 +19,15 @@ const Navbar = () => {
     const fetchData = async () => {
         try {
             //const response = await axios.get(`${API_BASE_URL}/getAllProjects`);
-            const res = await axios.get(`${API_BASE_URL}/getByLocation`);
-            const resProjectPlot = await axios.get(`${API_BASE_URL}/getAllPlotProjects`);
-            const resLocationPlot = await axios.get(`${API_BASE_URL}/getPlotByLocation`);
+            const res = await axios.get(`${API_BASE_URL}/getAllLocation`);
+            //const resProjectPlot = await axios.get(`${API_BASE_URL}/getAllPlotProjects`);
+            //const resLocationPlot = await axios.get(`${API_BASE_URL}/getPlotByLocation`);
             const resBuild = await axios.get(`${API_BASE_URL}/getAllBuilder`);
 
             //setProjects(response.data);
             setLocations(res.data);
-            setPlotProject(resProjectPlot.data);
-            setPlotLocation(resLocationPlot.data);
+            //setPlotProject(resProjectPlot.data);
+            //setPlotLocation(resLocationPlot.data);
             setBuilders(resBuild.data)
 
             //console.log(projects);
@@ -42,23 +42,35 @@ const Navbar = () => {
     }, []);
 
 
-    const projectCall = async (builderId) => {
+    // const projectCall = async (builderId) => {
 
-        const response = await axios.get(`${API_BASE_URL}/getAllProjectByBuilders/${builderId}`);
-        setProjects(response.data);
-        //console.log(projects);
+    //     const response = await axios.get(`${API_BASE_URL}/getAllProjectByBuilders/${builderId}`);
+    //     setProjects(response.data);
+    //     //console.log(projects);
+
+    // }
+
+
+
+
+
+    // const handleSendData = (dataToSend) => {
+    //     localStorage.clear();
+    //     localStorage.setItem("ProjectName", dataToSend)
+    // };
+
+    const builderPro = (builderId, builderName) => {
+        //console.log(builderId)
+        localStorage.removeItem("BuilderId");
+        localStorage.removeItem("BuilderName");
+        localStorage.setItem("BuilderId", builderId);
+        localStorage.setItem("BuilderName", builderName);
 
     }
-
-
-
-
-
-   const handleSendData = (dataToSend) => {
-    localStorage.clear();
-    localStorage.setItem("ProjectName",dataToSend)
-  };
-
+  const handleLocationData=(location)=>{
+    localStorage.removeItem("location");
+    localStorage.setItem("location",location);
+  }
 
 
 
@@ -66,14 +78,14 @@ const Navbar = () => {
 
     return (
         <div className="App">
-            <nav className="z-3   navbar navbar-expand-lg bg-body-tertiary shadow p-3  bg-body-tertiary rounded">
+            <nav className="z-3   navbar navbar-expand-lg bg-body-tertiary shadow p-3   bg-body-tertiary rounded">
                 <div className="container ">
                     <Link className=" me-5 " to="/"> <img src={Logo} className='img-fluid' /></Link>
                     <label for="drop" className="toggle">&#8801; Menu</label>
                     <input type="checkbox" id="drop" />
                     <ul className=" navbar-nav me-auto mb-2 mb-lg-0 menu">
                         <li >
-                            <label for="drop-1" class="toggle">Home</label>
+                            <label for="drop-1" className="toggle">Home</label>
                             <Link to='/' > Home</Link>
                             <input type="checkbox" id="drop-1" />
                             <ul>
@@ -84,34 +96,34 @@ const Navbar = () => {
                         </li>
                         <li >
                             <label for="drop-2" className="toggle">Residential</label>
-                            <a href="/">Residential</a>
+                            <a href="/residentialProjects">Residential</a>
                             <input type="checkbox" id="drop-2" />
                             <ul>
                                 <li>
-                                    <label for="drop-3" className="toggle">Buy by Project </label>
-                                    <a href="#">Buy by Project</a>
+                                    <label for="drop-3" className="toggle">Buy by Builder </label>
+                                    <a href="#">Buy by Builder</a>
                                     <input type="checkbox" id="drop-3" />
                                     <ul>
                                         {Array.isArray(builders) && builders.map(builder => (
                                             <>
                                                 <li >
-                                                    <label for="drop-12" onClick={() => projectCall(builder._id)} className="toggle ">{builder.builderName} </label>
-                                                    <Link  onMouseOver={() => projectCall(builder._id)} to="#">{builder.builderName}</Link>
+                                                    <a onClick={() => builderPro(builder._id, builder.builderName)} href={`/builderProject/${builder._id}`}><label for="drop-12" className="toggle "> </label></a>
+                                                    {/* <Link  onMouseOver={() => projectCall(builder._id)} to="#">{builder.builderName}</Link> */}
+                                                    <a onClick={() => builderPro(builder._id, builder.builderName)} href={`/builderProject/${builder._id}`} >{builder.builderName}</a>
                                                     <input type="checkbox" id="drop-12" />
                                                     <ul>
-                                                        {projects.map(project => (
+                                                        {projects?.map(project => (
                                                             <li>
                                                                 {/* {<Link to={{ pathname: `/getPropertiesByProject/${project._id}`, state: "hello" }}>
                                                                     {project.projectName}
                                                                 </Link>} */}
-                                                                 <a className='togg' onClick={()=> handleSendData(project.projectName)} href={`/getPropertiesByProject/${project._id}`}>{project.projectName}</a> 
-
-
-
+                                                                {/* <a className='togg' onClick={() => handleSendData(project.projectName)} href={`/getPropertiesByProject/${project._id}`}>{project.projectName}</a> */}
                                                             </li>
                                                         ))}
-                                                        {plotPorject.map(project => (
-                                                            <li><a className='togg' href={`/getPlotByProject/${project._id}`}>{project.projectName}</a></li>
+                                                        {plotPorject?.map(project => (
+                                                            <li>
+                                                            {/* <a className='togg' href={`/getPlotByProject/${project._id}`}>{project.projectName}</a> */}
+                                                            </li>
                                                         ))}
                                                     </ul>
                                                 </li>
@@ -126,11 +138,11 @@ const Navbar = () => {
                                     <input type="checkbox" id="drop-4" />
                                     <ul>
                                         {locations.map(location => (
-                                            <li><a className='togg' href={`/getPropertiesByLocation/${location._id}`}>{location.location}</a></li>
+                                            <li><a onClick={()=>handleLocationData(location.showLocation)} className='togg' href={`/builderProjectByLocation/${location.showLocation}`}>{location.showLocation}</a></li>
                                         ))}
-                                        {plotLocation.map(location => (
-                                            <li><Link className='togg'to={`/getPlotByLocation/${location._id}`}>{location.location}</Link></li>
-                                        ))}
+                                        {/* {plotLocation.map(location => (
+                                            <li><Link className='togg' to={`/getPlotByLocation/${location._id}`}>{location.location}</Link></li>
+                                        ))} */}
                                     </ul>
                                 </li>
                             </ul>
@@ -170,8 +182,10 @@ const Navbar = () => {
                                     <a href="#">Buy Apartment</a>
                                     <input type="checkbox" id="drop-9" />
                                     <ul>
-                                        {locations.map(location => (
-                                            <li><a className='togg' href={`/getPropertiesByLocation/${location._id}`}>{location.location}</a></li>
+                                        {locations?.map(location => (
+                                            <li>
+                                                {/* <a className='togg' href={`/getPropertiesByLocation/${location._id}`}>{location.location}</a> */}
+                                                </li>
                                         ))}
                                     </ul>
                                 </li>
@@ -189,15 +203,18 @@ const Navbar = () => {
                                     <a href="#">Buy Plot</a>
                                     <input type="checkbox" id="drop-12" />
                                     <ul>
-                                        {plotLocation.map(location => (
-                                            <li><Link to={`/getPlotByLocation/${location._id}`}>{location.location}</Link></li>
+                                        {plotLocation?.map(location => (
+                                            <li>
+                                                {/* <Link to={`/getPlotByLocation/${location._id}`}>{location.location}</Link> */}
+                                                
+                                                </li>
                                         ))}
                                     </ul>
                                 </li>
                             </ul>
                         </li>
                         <li> <label for="drop-11" className="toggle">List Property </label>
-                            <Link  to='/' > List Property</Link>
+                            <Link to='/' > List Property</Link>
                             <input type="checkbox" id="drop-11" />
                             <ul>
                                 <li><Link className='togg' to="/propertySignup">List a Property</Link></li>
